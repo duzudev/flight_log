@@ -1,0 +1,47 @@
+<h1 class="mb-4">Flight Data Collection</h1>
+
+<%= link_to 'Add New Flight', new_flight_path, class: 'btn btn-primary mb-3' %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>UAV Type</th>
+      <th>Callsign</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Takeoff Time</th>
+      <th>Landing Time</th>
+      <th>Flight Duration</th>
+      <th>Battery Takeoff</th>
+      <th>Battery Return</th>
+      <th>Battery Landing</th>
+      <th>Mission Type</th>
+      <th>PIC</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @flights.each do |flight| %>
+      <tr>
+        <td><%= flight.date %></td>
+        <td><%= flight.uav_type %></td>
+        <td><%= flight.callsign %></td>
+        <td><%= flight.from %></td>
+        <td><%= flight.to %></td>
+        <td><%= flight.takeoff_time.strftime("%H:%M") %></td>
+        <td><%= flight.landing_time.strftime("%H:%M") %></td>
+        <td><%= (flight.landing_time - flight.takeoff_time).to_i / 60 %> min</td>
+        <td><%= flight.bat_t_o %></td>
+        <td><%= flight.bat_rth %></td>
+        <td><%= flight.bat_ldg %></td>
+        <td><%= flight.mission_type %></td>
+        <td><%= flight.pic %></td>
+        <td>
+          <%= link_to 'Edit', edit_flight_path(flight), class: 'btn btn-warning btn-sm' %>
+          <%= button_to 'Delete', flight, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2024-08-02
+  uav_type: MyString
+  callsign: MyString
+  from: MyString
+  to: MyString
+  takeoff_time: 2024-08-02 15:42:05
+  landing_time: 2024-08-02 15:42:05
+  bat_t_o: 1
+  bat_rth: 1
+  bat_ldg: 1
+  mission_type: MyString
+  pic: MyString
+
+two:
+  date: 2024-08-02
+  uav_type: MyString
+  callsign: MyString
+  from: MyString
+  to: MyString
+  takeoff_time: 2024-08-02 15:42:05
+  landing_time: 2024-08-02 15:42:05
+  bat_t_o: 1
+  bat_rth: 1
+  bat_ldg: 1
+  mission_type: MyString
+  pic: MyString
