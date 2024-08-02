@@ -1,4 +1,4 @@
-<%= form_with(model: flight, local: true) do |form| %>
+<%= form_with(model: @flight, local: true) do |form| %>
   <div class="row">
     <div class="col-md-6 form-group">
       <%= form.label :date %>
@@ -78,3 +78,18 @@
     <%= form.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const missionTypeSelect = document.getElementById('mission_type_select');
+    const othersTextarea = document.getElementById('others_textarea');
+
+    missionTypeSelect.addEventListener('change', function() {
+      if (this.value === 'others') {
+        othersTextarea.style.display = 'block';
+      } else {
+        othersTextarea.style.display = 'none';
+      }
+    });
+  });
+</script>

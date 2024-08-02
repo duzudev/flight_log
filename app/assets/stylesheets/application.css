@@ -13,5 +13,13 @@
  *= require_tree .
  *= require_self
  */
-
- @import 'bootstrap';
+ /* Calendar Cell Hover Effect */
+.fc-day {
+    transition: background-color 0.3s ease;
+  }
+  
+  .fc-day:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue on hover */
+  }
+  
+  

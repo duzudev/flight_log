@@ -1,6 +1,14 @@
 class FlightsController < ApplicationController
   def index
-    @flights = Flight.all
+    if params[:date].present?
+      @flights = Flight.where(date: params[:date])
+      respond_to do |format|
+        format.json { render json: { flights: @flights } }
+        format.html # renders the index.html.erb
+      end
+    else
+      @flights = Flight.all
+    end
   end
 
   def new
@@ -38,6 +46,6 @@ class FlightsController < ApplicationController
   private
 
   def flight_params
-    params.require(:flight).permit(:date, :uav_type, :callsign, :from, :to, :takeoff_time, :landing_time, :bat_t_o, :bat_rth, :bat_ldg, :mission_type, :pic)
+    params.require(:flight).permit(:date, :uav_type, :callsign, :from, :to, :takeoff_time, :landing_time, :bat_t_o, :bat_rth, :bat_ldg, :mission_type, :others, :pic)
   end
 end

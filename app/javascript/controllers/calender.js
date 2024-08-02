@@ -1,47 +1,4 @@
-<div class="container-fluid" style="background-color: rgb(246, 248, 250); padding: 20px; min-height: 100vh;">
-  <div class="row mb-4">
-    <div class="col-12 col-md-8">
-      <h1 class="mb-4">Flight Log</h1>
-      <%= link_to 'Add New Flight', new_flight_path, class: 'btn btn-primary mb-3' %>
-    </div>
-    <div class="col-12 col-md-4">
-      <div id="calendar" class="mb-4" style="max-width: 100%;"></div>
-    </div>
-  </div>
-
-  <!-- Flight Table -->
-  <div class="bg-white p-4 rounded">
-    <table class="table table-bordered table-striped" id="flight-table">
-      <thead>
-        <tr>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">Date</th>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">UAV Type</th>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">Callsign</th>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">From</th>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">To</th>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">Mission Type</th>
-          <th style="font-family: 'Courier New', monospace; font-size: 11pt;">PIC</th>
-        </tr>
-      </thead>
-      <tbody id="flight-table-body">
-        <!-- Flight rows will be inserted here dynamically -->
-      </tbody>
-    </table>
-
-    <!-- Flight Details Section -->
-    <div id="flight-details" style="display:none;">
-      <h2>Flight Details</h2>
-      <div id="details-content"></div>
-      <%= link_to 'Edit', '', id: 'edit-button', class: 'btn btn-warning mb-3', style: 'display:none;' %>
-      <%= button_to 'Delete', '', method: :delete, id: 'delete-button', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mb-3', style: 'display:none;' %>
-    </div>
-  </div>
-</div>
-
-<div class="pb-5"></div> <!-- Padding at the bottom of the page -->
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var flightTableBody = document.getElementById('flight-table-body');
     var flightTable = document.getElementById('flight-table');
@@ -49,7 +6,7 @@
     var detailsContent = document.getElementById('details-content');
     var editButton = document.getElementById('edit-button');
     var deleteButton = document.getElementById('delete-button');
-
+  
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       dateClick: function(info) {
@@ -74,9 +31,9 @@
           });
       }
     });
-
+  
     calendar.render();
-
+  
     function fetchFlights(date) {
       // Fetch flights for the selected date
       fetch(`/flights?date=${date}`)
@@ -86,7 +43,7 @@
           flightTable.style.display = 'table'; // Show the table
         });
     }
-
+  
     function populateFlightTable(flights) {
       flightTableBody.innerHTML = '';
       flights.forEach(flight => {
@@ -102,7 +59,7 @@
         flightTableBody.innerHTML += row;
       });
     }
-
+  
     window.fetchFlightDetails = function(id) {
       // Fetch flight details by ID
       fetch(`/flights/${id}`)
@@ -128,16 +85,4 @@
         });
     };
   });
-</script>
-
-<style>
-  /* Change cell color on hover */
-  .table tr:hover {
-    background-color: #f0f8ff; /* Light blue background on hover */
-  }
   
-  /* Adjust calendar div to be responsive */
-  #calendar {
-    width: 100%;
-  }
-</style>
